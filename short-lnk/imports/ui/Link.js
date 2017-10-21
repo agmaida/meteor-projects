@@ -1,7 +1,17 @@
 import React from 'react';
+// withRouter instead of browserHistory
+import { withRouter } from 'react-router-dom';
 
 export default class Link extends React.Component {
+    onLogout(){
+        this.props.history.push('/');
+    }
     render() {
-      return <p>Link component here</p>;
+      return (
+          <div>
+              <h1>Your Links</h1>
+              <button onClick={this.onLogout.bind(this)}>Logout</button>
+          </div>
+      );
     }
   }
