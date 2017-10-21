@@ -10,6 +10,7 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-router": "^4.2.0",
-    "reast": "0.0.1"
+    "reast": "0.0.1",
+    "simpl-schema": "^0.3.2"
   }
 }
