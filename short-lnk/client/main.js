@@ -11,10 +11,11 @@ import Link from '../imports/ui/Link';
 import NotFound from '../imports/ui/NotFound'
 import Login from '../imports/ui/Login'
 
+// This is how to get the browser history in v4
 const browserHistory = createBrowserHistory();
 
-const unauthenticatedPages = ['/', 'signup'];
-const authenticatedPages = ['links'];
+const unauthenticatedPages = ['/', '/signup'];
+const authenticatedPages = ['/links'];
 const routes = (
   <Router history={browserHistory}>
     <Switch>
@@ -29,9 +30,15 @@ const routes = (
 Tracker.autorun(() => {
   const isAuthenticated = !!Meteor.userId();
   const pathname = browserHistory.location.pathname;
-  //const pathname = browserHistory.getCurrentLocation().pathname;
   const isUnauthenticatedPage = unauthenticatedPages.includes(pathname);
   const isAuthenticatedPage = authenticatedPages.includes(pathname);
+
+  if (isUnauthenticatedPage && isAuthenticated){
+    browserHistory.push('/links');
+  } else if (isAuthenticatedPage && !isAuthenticated){
+    browserHistory.push('/');
+  }
+
   console.log('isAuthenticated', isAuthenticated)
 });
 
