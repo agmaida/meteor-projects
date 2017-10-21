@@ -19,20 +19,6 @@ const browserHistory = createBrowserHistory();
 const unauthenticatedPages = ['/', '/signup'];
 const authenticatedPages = ['/links'];
 
-// const routes = (
-//   <Router history={browserHistory}>
-//     <Switch>
-//       <Route exact path="/" component={Login}/>
-//       <Route path="/signup" component={Signup}/>
-//       <Route path="/links" component={Link}/>
-//       <Route component={NotFound}/>
-//     </Switch>    
-//   </Router>
-// );
-
-// The Redirect for / and signup was found in the QA for the course
-// I am using Redirect because onEnter isnt supported in react rourter v4
-// ? : is shorhand for if else
 const routes = (
   <Router history={browserHistory}>
     <Switch>
@@ -40,7 +26,7 @@ const routes = (
         return Meteor.userId() ? <Redirect to="/links"/> : <Login/>
       }}/>
       <Route path="/signup" render={ () => {
-        return Meteor.userId() ? <Redirect to="/links"/> : <Singup/>
+        return Meteor.userId() ? <Redirect to="/links"/> : <Signup/>
       }}/>
       <Route path="/links" render={ () => {
         return !Meteor.userId() ? <Redirect to="/"/> : <Link/>
